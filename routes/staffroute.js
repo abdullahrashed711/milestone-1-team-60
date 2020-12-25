@@ -516,7 +516,7 @@ app.delete('/staff/hr/deleteCourse',auth,async (req,res) =>{
 
 app.post('/staff/hr/addStaff',auth,async (req,res)=>{
     const current=await staff.findById(req.staff)
-    const {id,name,email,salary,officelocation,role}=req.body;   
+    const {id,name,email,salary,officelocation,role,personalInfo}=req.body;   
    
     if(current.role=="hr"){
             const emailcheck=await staff.findOne({
@@ -544,7 +544,7 @@ app.post('/staff/hr/addStaff',auth,async (req,res)=>{
                      const passwordHashed = await bcryptjs.hash(passwordd,salt);
                 const newStaff=new staff({
                     password:passwordHashed,
-                   id:id, email:email,name:name,salary:salary,officelocation:officelocation,role:role
+                   id:id, email:email,name:name,salary:salary,officelocation:officelocation,role:role,personalInfo:personalInfo
                     ,newuser:true,daysoff:"Saturday"
                 })
                 await newStaff.save();
@@ -554,7 +554,7 @@ app.post('/staff/hr/addStaff',auth,async (req,res)=>{
                 const newStaff=new staff({
                     password:"123456",
                     id:id,
-                    email:email,name:name,salary:salary,officelocation:officelocation,role:role
+                    email:email,name:name,salary:salary,officelocation:officelocation,role:role,personalInfo:personalInfo
                     ,newuser:true
                 })
                 await newStaff.save();
@@ -900,11 +900,11 @@ app.get('/staff/hod/viewdaysoff',auth,async(req,res)=>{
 
 app.get('/staff/hod/viewrequests',auth,async(req,res)=>{
     const current=await staff.findById(req.staff)
-    const {receiver}=req.body
+    
     
     if(current.role=="hod"){
         const fetchrequest=await request.find({
-            receiver:receiver
+            receiver:current.id
         })
         if(fetchrequest!=null){
         res.send(fetchrequest)
@@ -1322,7 +1322,7 @@ app.post('/staff/academicmember/sendleaverequest',auth,async(req,res)=>{
     }
 })
 
-app.get('staff/academicmember/viewnotifications',auth,async(req,res)=>{
+app.get('/staff/academicmember/viewnotifications',auth,async(req,res)=>{
     const current=await staff.findById(req.staff)
     if(current.notifications!=null){
         res.send(current.notifications)
@@ -1331,7 +1331,7 @@ app.get('staff/academicmember/viewnotifications',auth,async(req,res)=>{
     }
 })
 
-app.get('staff/academicmember/viewrequeststatus',auth,async(req,res)=>{
+app.get('/staff/academicmember/viewrequeststatus',auth,async(req,res)=>{
     const current=await staff.findById(req.staff)
         const {caseofview}=req.body
     if(current.role=="academicmember" ){
