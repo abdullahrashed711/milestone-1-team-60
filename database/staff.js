@@ -18,6 +18,22 @@ email:{type:String,required:true,unique:true}, role: {
  },
  department:{
      type:String
+ },role:{
+     type:String 
+ },
+ daysoff:{
+     type:String
+ },officelocation:{
+     type:String
+ },
+ personalInfo:{
+     type:String
+ },newuser:{
+     type:Boolean 
+ },requests:{
+     type:[String]
+ },notifications:{
+    type:[String]
  }
 });
 

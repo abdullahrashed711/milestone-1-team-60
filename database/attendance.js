@@ -8,10 +8,9 @@ const attendanceSchema= new mongoose.Schema({
     ,day :{
         type:Number
     },
-    attended:{
-        type:Boolean
-    },staffId:{
-      type:  [String] ,required:true
+    staffattend:{
+        staffID:{type:String},
+        attended:{type:[Boolean]}
     }
 })
 
