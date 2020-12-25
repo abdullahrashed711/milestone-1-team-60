@@ -1365,7 +1365,7 @@ app.get('/staff/academicmember/viewrequeststatus',auth,async(req,res)=>{
 })
 
 
-app.post('staff/academicmember/deletependingrequest',auth,async(req,res)=>{
+app.post('/staff/academicmember/deletependingrequest',auth,async(req,res)=>{
     const current=await staff.findById(req.staff)
         const {reqid}=req.body
     if(current.role=="academicmember" ){

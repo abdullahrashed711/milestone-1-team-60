@@ -278,3 +278,8 @@ Route:/staff/academicmember/viewrequeststatus
 Request type:GET
 Request body:"caseofview":"1"  //there are 4 different values for caseofview 1 for accepted requests 2 for rejected 3 for all ,0 for pending 
 Response example : {"_id":{"$oid":"5fe3d22c1a1625dd5c98eb15"},"requesttype":"changeDayOff","sender":"newid21","receiver":"test","newDayoff":"sunday","status":"accepted"}
+---------------------------------------------------
+Functionality:academic member can delete pending requests
+Route:/staff/academicmember/deletependingrequest
+Request type:POST
+Request body:"reqid":"5fe3d22c1a1625dd5c98eb15"
